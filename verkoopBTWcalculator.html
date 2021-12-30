@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Product Prijs BTW Calculator</title>
+    </head>
+    <body>
+        <div class="percent">
+            <label>BTW:</label>
+            <input type="text" id="btw" maxlength="3" size="4">
+        </div>
+        <br><br>
+        <div>
+            <label>Verkoop Prijs:</label>
+            <input type="text" id="prijs" >
+        </div>
+        <br><br>
+        <div>
+            <label>Klant Betaald:</label>
+            <input class = "display-box" type = "text" id = "result" disabled /><br><br>
+        </div>
+    </body>
+    <style>
+        div {
+            display: inline-block;
+            position: relative;
+        }
+        div::after {
+        position: absolute;
+        top: 2px;
+        right: .5em;
+        transition: all .05s ease-in-out;
+        }
+        .percent::after {
+            content: '%';
+        }
+    </style>
+    <script>
+
+        setInterval(function(){ 
+            var BTW = document.getElementById("btw").value;
+            var prijs = document.getElementById("prijs").value;
+
+            if (BTW != "" && prijs != "") {
+                berekening()
+            } else {
+                document.getElementById("result").value = "";
+            }
+            if (prijs != "" && !prijs.includes("€")){
+                document.getElementById("prijs").value = "€" + prijs;
+            }
+            if (prijs == "€"){
+                document.getElementById("prijs").value = "";
+            }
+        });
+
+        function berekening() {
+            var BTW = document.getElementById("btw").value;
+            var verkoopPrijs = document.getElementById("prijs").value.replace("€", "");
+            var berekening = ( (parseInt(verkoopPrijs)/100) * parseInt(BTW) ) + parseInt(verkoopPrijs);
+            document.getElementById("result").value = "€" + berekening.toString();
+        }
+    </script>
+</html>
