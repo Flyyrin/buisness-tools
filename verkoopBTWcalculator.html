@@ -57,7 +57,7 @@
         function berekening() {
             var BTW = document.getElementById("btw").value;
             var verkoopPrijs = document.getElementById("prijs").value.replace("€", "");
-            var berekening = ( (parseInt(verkoopPrijs)/100) * parseInt(BTW) ) + parseInt(verkoopPrijs);
+            var berekening = ( (parseFloat(verkoopPrijs)/100) * parseFloat(BTW) ) + parseInt(verkoopPrijs);
             document.getElementById("result").value = "€" + berekening.toString();
         }
     </script>
